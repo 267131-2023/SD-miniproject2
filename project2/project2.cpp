@@ -1,10 +1,14 @@
 ﻿#include <iostream>
+#include "Heap.h"
 
 using namespace std;
 
 int main()
 {
-    cout << "Hello World!\n";
+    Heap heap(5);
+    
+
+    return 0;
 }
 
 
