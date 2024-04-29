@@ -1,4 +1,7 @@
+#include "iostream"
 #include "PriorityQueue.h"
+
+using namespace std;
 
 PriorityQueue::PriorityQueue() {
     head = nullptr;
@@ -22,14 +25,24 @@ void PriorityQueue::insert(Node *element, int i_priority) {
         }
 
         else{
+            Node* prev_node = head;
+            tmp_node = head->get_next();
             while(tmp_node->get_next() != nullptr && element->get_priority() <= tmp_node->get_priority()){
                 tmp_node = tmp_node->get_next();
+                prev_node = prev_node->get_next();
             }
 
-            element->set_next(tmp_node->get_next());
-            tmp_node->set_next(element);
-            size++;
+            if(tmp_node->get_next() == nullptr){
+                tmp_node->set_next(element);
+                element->set_next(nullptr);
+            }
+
+            else{
+                element->set_next(prev_node->get_next());
+                prev_node->set_next(element);
+            }
         }
+        size++;
     }
 }
 
