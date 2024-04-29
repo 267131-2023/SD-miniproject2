@@ -1,8 +1,16 @@
-//
-// Created by kfedo on 23.04.2024.
-//
+#include "Node.h"
 
-#ifndef PRIORITYQUEUE_PRIORITYQUEUE_H
-#define PRIORITYQUEUE_PRIORITYQUEUE_H
+class PriorityQueue{
+private:
+    Node* head;
+    int size;
+public:
+    PriorityQueue();
+    void insert(Node* element, int i_priority);
+    Node* extract_max();
+    Node* peek();
+    void modify_key(Node* element, int i_priority);
+    int return_size();
+    Node* get_head();
 
-#endif //PRIORITYQUEUE_PRIORITYQUEUE_H
+};
