@@ -46,6 +46,15 @@ void PriorityQueue::insert(Node *element, int i_priority) {
     }
 }
 
+void PriorityQueue::display_queue() {
+    Node* tmp = head;
+
+    while(tmp != nullptr){
+        cout << "Value: " << tmp->get_value() << " Priority: " << tmp->get_priority() << endl;
+        tmp = tmp->get_next();
+    }
+}
+
 int PriorityQueue::return_size() {
     return size;
 }
