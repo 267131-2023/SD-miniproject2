@@ -11,6 +11,6 @@ public:
     Node* peek();
     void modify_key(Node* element, int i_priority);
     int return_size();
+    void display_queue();
     Node* get_head();
-
 };
