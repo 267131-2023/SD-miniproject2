@@ -1,8 +1,26 @@
-//
-// Created by kfedo on 29.04.2024.
-//
+#ifndef PRIORITYQUEUE_NODE_H
+#define PRIORITYQUEUE_NODE_H
 
-#ifndef UNTITLED_NODE_H
-#define UNTITLED_NODE_H
+class Node{
+private:
+    int value;
+    int priority;
+    Node* next;
 
-#endif //UNTITLED_NODE_H
+public:
+    Node(int i_value, int i_priority);
+    int get_value();
+    int get_priority();
+    Node* get_next();
+    void set_value(int i_new_value);
+    void set_priority(int i_new_priority);
+    void set_next(Node* next_node);
+
+    int getValue() const;
+
+    int getPriority() const;
+
+    Node *getNext() const;
+};
+
+#endif //PRIORITYQUEUE_NODE_H
