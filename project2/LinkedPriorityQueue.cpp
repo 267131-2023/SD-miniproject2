@@ -46,7 +46,7 @@ void PriorityQueue::insert(Node *element, int i_priority) {
     }
 }
 
-int PriorityQueue::extract_max() {
+tuple<int, int> PriorityQueue::extract_max() {
     if (head == nullptr) { // lista jest pusta
         cout << "Lista jest pusta" << endl;
     }
@@ -56,7 +56,7 @@ int PriorityQueue::extract_max() {
         delete head;
         head = nullptr;
         size--;
-        return value, priority;
+        return make_tuple(value, priority);
     }
     Node* current_node = head->get_next();
     int value = head ->get_value();
@@ -64,7 +64,7 @@ int PriorityQueue::extract_max() {
     delete head;
     head = current_node;
     size--;
-    return value, priority;
+    return make_tuple(value, priority);
 }
 
 void PriorityQueue::display_queue() {
