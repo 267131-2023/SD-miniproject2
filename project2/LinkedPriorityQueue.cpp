@@ -11,40 +11,28 @@ PriorityQueue::PriorityQueue() {
 void PriorityQueue::insert(Node *element, int i_priority) {
     if(head == nullptr){
         head = element;
-        head->set_priority(i_priority);
-        head->set_next(nullptr);
-        size++;
     }
-
     else{
-        Node* tmp_node = head;
 
-        if(element->get_priority() > tmp_node->get_priority()){
+        if(element->get_priority() > head->get_priority()){
+            element->set_next(head);
             head = element;
-            element->set_next(tmp_node);
         }
 
         else{
             Node* prev_node = head;
-            tmp_node = head->get_next();
-            while(tmp_node->get_next() != nullptr && element->get_priority() <= tmp_node->get_priority()){
+            Node* tmp_node = head->get_next();
+            while(prev_node->get_next() != nullptr && i_priority <= tmp_node->get_priority()){
                 tmp_node = tmp_node->get_next();
                 prev_node = prev_node->get_next();
             }
-
-            if(tmp_node->get_next() == nullptr){
-                tmp_node->set_next(element);
-                element->set_next(nullptr);
-            }
-
-            else{
-                element->set_next(prev_node->get_next());
-                prev_node->set_next(element);
+            element->set_next(tmp_node);
+            prev_node->set_next(element);
             }
         }
-        size++;
-    }
+    size++;
 }
+
 
 tuple<int, int> PriorityQueue::extract_max() {
     if (head == nullptr) { // lista jest pusta
