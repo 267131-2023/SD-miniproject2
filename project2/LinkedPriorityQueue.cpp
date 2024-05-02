@@ -46,6 +46,27 @@ void PriorityQueue::insert(Node *element, int i_priority) {
     }
 }
 
+int PriorityQueue::extract_max() {
+    if (head == nullptr) { // lista jest pusta
+        cout << "Lista jest pusta" << endl;
+    }
+    if (head->get_next() == nullptr) {// lista zawiera tylko jeden element
+        int value = head -> get_value();
+        int priority = head -> get_priority();
+        delete head;
+        head = nullptr;
+        size--;
+        return value, priority;
+    }
+    Node* current_node = head->get_next();
+    int value = head ->get_value();
+    int priority = head -> get_priority();
+    delete head;
+    head = current_node;
+    size--;
+    return value, priority;
+}
+
 void PriorityQueue::display_queue() {
     Node* tmp = head;
 
