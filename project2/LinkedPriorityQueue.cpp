@@ -8,15 +8,16 @@ PriorityQueue::PriorityQueue() {
     size = 0;
 }
 
-void PriorityQueue::insert(Node *element, int i_priority) {
+void PriorityQueue::insert(int element, int i_priority) {
+    Node* node = new Node(element, i_priority);
     if(head == nullptr){
-        head = element;
+        head = node;
     }
     else{
 
-        if(element->get_priority() > head->get_priority()){
-            element->set_next(head);
-            head = element;
+        if(i_priority > head->get_priority()){
+            node->set_next(head);
+            head = node;
         }
 
         else{
@@ -26,8 +27,8 @@ void PriorityQueue::insert(Node *element, int i_priority) {
                 tmp_node = tmp_node->get_next();
                 prev_node = prev_node->get_next();
             }
-            element->set_next(tmp_node);
-            prev_node->set_next(element);
+            node->set_next(tmp_node);
+            prev_node->set_next(node);
             }
         }
     size++;
@@ -63,17 +64,29 @@ tuple<int, int> PriorityQueue::peek() {
     }
 }
 
-void PriorityQueue::modify_key(Node* element, int i_priority) {
-    if (element == nullptr) {
-        std::cout << "Podany węzeł nie istnieje\n";
+void PriorityQueue::modify_key(int element, int i_priority) {
+    if (head == nullptr) {
+        std::cout << "Kolejka jest pusta\n";
         return;
     }
-    int initial_priority = element->get_priority();
-    if (i_priority < initial_priority) {
-        if (element == head) {
-            extract_max();
-            insert(element->get_value(), i_priority);
-
+    Node* current_node = head;
+    while (current_node != nullptr && current_node->get_value() != element) {
+        current_node = current_node->get_next();
+    }
+    if (current_node == nullptr) {
+        std::cout << "Element " << element << " nie istnieje w kolejce\n";
+        return;
+    }
+    //decrease-key
+    if (i_priority < current_node->get_priority()) {
+        current_node->set_priority(i_priority);
+        while (current_node->get_next() != nullptr && current_node->get_next()->get_priority() > i_priority) {
+            Node* nextNode = current_node->get_next();
+            current_node->set_next(nextNode->get_next());
+            nextNode->set_next(current_node);
+        }
+        if (current_node == head) {
+            head = current_node->get_next();
         }
     }
 }
