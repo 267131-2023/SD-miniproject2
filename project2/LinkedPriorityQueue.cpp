@@ -63,6 +63,13 @@ tuple<int, int> PriorityQueue::peek() {
     }
 }
 
+void modifyKey(Node* element, int i_priority) {
+    if (element == nullptr) {
+        std::cout << "Podany węzeł nie istnieje\n";
+        return;
+    }
+}
+
 void PriorityQueue::display_queue() {
     Node* tmp = head;
 
@@ -70,6 +77,10 @@ void PriorityQueue::display_queue() {
         cout << "Value: " << tmp->get_value() << " Priority: " << tmp->get_priority() << endl;
         tmp = tmp->get_next();
     }
+}
+
+void modify_key(Node* element, int i_priority){
+    
 }
 
 int PriorityQueue::return_size() {
