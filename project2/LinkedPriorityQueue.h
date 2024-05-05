@@ -15,5 +15,4 @@ public:
     int return_size();
     void display_queue();
     Node* get_head();
-
 };
