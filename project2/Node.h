@@ -15,12 +15,6 @@ public:
     void set_value(int i_new_value);
     void set_priority(int i_new_priority);
     void set_next(Node* next_node);
-
-    int getValue() const;
-
-    int getPriority() const;
-
-    Node *getNext() const;
 };
 
 #endif //PRIORITYQUEUE_NODE_H
