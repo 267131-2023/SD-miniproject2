@@ -69,27 +69,58 @@ void PriorityQueue::modify_key(int element, int i_priority) {
         std::cout << "Kolejka jest pusta\n";
         return;
     }
+
     Node* current_node = head;
+    Node* prev_node = nullptr;
+
     while (current_node != nullptr && current_node->get_value() != element) {
+        prev_node = current_node;
         current_node = current_node->get_next();
     }
+
     if (current_node == nullptr) {
         std::cout << "Element " << element << " nie istnieje w kolejce\n";
         return;
     }
-    //decrease-key
+
+
     if (i_priority < current_node->get_priority()) {
         current_node->set_priority(i_priority);
-        while (current_node->get_next() != nullptr && current_node->get_next()->get_priority() > i_priority) {
-            Node* nextNode = current_node->get_next();
-            current_node->set_next(nextNode->get_next());
-            nextNode->set_next(current_node);
-        }
-        if (current_node == head) {
+        if (prev_node != nullptr) {
+            if (current_node->get_priority() < prev_node->get_priority()) {
+                prev_node->set_next(current_node->get_next());
+                Node* tmp_node = head;
+                Node* prev_temp = nullptr;
+
+                while (tmp_node != nullptr && tmp_node->get_priority() > i_priority) {
+                    prev_temp = tmp_node;
+                    tmp_node = tmp_node->get_next();
+                }
+
+                if (prev_temp != nullptr) {
+                    prev_temp->set_next(current_node);
+                    current_node->set_next(tmp_node);
+                } else {
+                    head = current_node;
+                    current_node->set_next(tmp_node);
+                }
+            }
+        } else {
+            Node* tmp_node = head->get_next();
+            Node* prev_temp = head;
+
+            while (tmp_node != nullptr && tmp_node->get_priority() > i_priority) {
+                prev_temp = tmp_node;
+                tmp_node = tmp_node->get_next();
+            }
+
             head = current_node->get_next();
+            prev_temp->set_next(current_node);
+            current_node->set_next(tmp_node);
         }
     }
 }
+
 
 void PriorityQueue::display_queue() {
     Node* tmp = head;
