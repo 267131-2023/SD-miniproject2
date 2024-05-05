@@ -83,7 +83,7 @@ void PriorityQueue::modify_key(int element, int i_priority) {
         return;
     }
 
-
+    //decrease key
     if (i_priority < current_node->get_priority()) {
         current_node->set_priority(i_priority);
         if (prev_node != nullptr) {
@@ -96,14 +96,8 @@ void PriorityQueue::modify_key(int element, int i_priority) {
                     prev_temp = tmp_node;
                     tmp_node = tmp_node->get_next();
                 }
-
-                if (prev_temp != nullptr) {
-                    prev_temp->set_next(current_node);
-                    current_node->set_next(tmp_node);
-                } else {
-                    head = current_node;
-                    current_node->set_next(tmp_node);
-                }
+                prev_temp->set_next(current_node);
+                current_node->set_next(tmp_node);
             }
         } else {
             Node* tmp_node = head->get_next();
@@ -119,7 +113,32 @@ void PriorityQueue::modify_key(int element, int i_priority) {
             current_node->set_next(tmp_node);
         }
     }
+        // increase key
+    else if (i_priority > current_node->get_priority()) {
+        current_node->set_priority(i_priority);
+        if (prev_node != nullptr) {
+            if (current_node->get_priority() > prev_node->get_priority()) {
+                prev_node->set_next(current_node->get_next());
+                Node* tmp_node = head;
+                Node* prev_temp = nullptr;
+
+                while (tmp_node != nullptr && tmp_node->get_priority() > i_priority) {
+                    prev_temp = tmp_node;
+                    tmp_node = tmp_node->get_next();
+                }
+                if(prev_temp == nullptr){
+                    head = current_node;
+                    current_node->set_next(tmp_node);
+                }
+                else{
+                    prev_temp->set_next(current_node);
+                    current_node->set_next(tmp_node);
+                }
+            }
+        }
+    }
 }
+
 
 
 void PriorityQueue::display_queue() {
