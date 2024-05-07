@@ -57,9 +57,9 @@ tuple<int, int> PriorityQueue::extract_max() {
 tuple<int, int> PriorityQueue::peek() {
     if (head == nullptr) { // Jeśli lista jest pusta
         cout << "Lista jest pusta" << endl;
-    } else{
-        return make_tuple(head->get_value(), head->get_priority());
+        return make_tuple(-1, -1);
     }
+    return make_tuple(head->get_value(), head->get_priority());
 }
 
 void PriorityQueue::modify_key(int element, int i_priority) {
