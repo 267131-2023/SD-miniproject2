@@ -1,5 +1,5 @@
 #include "iostream"
-#include "PriorityQueue.h"
+#include "LinkedPriorityQueue.h"
 
 using namespace std;
 
