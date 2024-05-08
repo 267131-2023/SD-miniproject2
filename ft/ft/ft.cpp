@@ -10,7 +10,7 @@ using namespace std;
 using namespace std::chrono;
 
 void displayListMenu(PriorityQueue& pq, int& choice, int& number, int& element);
-void displayHeapMenu(Heap& heap, int& choice, int& number, int& element);
+void displayHeapMenu(Heap& heap, int &choice, int& number, int& element);
 void displayMainMenu(Heap& heap, PriorityQueue& pq, int& choice, int& number, int& element);
 
 
@@ -36,7 +36,7 @@ void displayListMenu(PriorityQueue& pq, int& choice, int& number, int& element) 
         cout << "Czas wykonania operacji: " << duration.count() << " nanosekund" << endl;
         break;
     }
-
+        
     case 2: {
         auto start = high_resolution_clock::now();
         tuple<int, int> result = pq.extract_max();
@@ -48,7 +48,7 @@ void displayListMenu(PriorityQueue& pq, int& choice, int& number, int& element) 
         cout << "Wartosc: " << value << ", Priorytet: " << priority << endl;
         break;
     }
-
+        
     case 3: {
         auto start = high_resolution_clock::now();
         tuple<int, int> result = pq.peek();
@@ -60,7 +60,7 @@ void displayListMenu(PriorityQueue& pq, int& choice, int& number, int& element) 
         cout << "Wartosc: " << value << ", Priorytet: " << priority << endl;
         break;
     }
-
+        
     case 4: {
         auto start = high_resolution_clock::now();
         priorityRandom = rand() % 54353 + number;
@@ -70,7 +70,7 @@ void displayListMenu(PriorityQueue& pq, int& choice, int& number, int& element) 
         cout << "Czas wykonania operacji: " << duration.count() << " nanosekund" << endl;
         break;
     }
-
+        
     case 5: {
         auto start = high_resolution_clock::now();
         pq.return_size();
@@ -80,7 +80,7 @@ void displayListMenu(PriorityQueue& pq, int& choice, int& number, int& element) 
         cout << "Rozmiar listy:" << pq.return_size();
         break;
     }
-
+        
     case 6:
 
         break;
@@ -110,7 +110,7 @@ void displayHeapMenu(Heap& heap, int& choice, int& number, int& element) {
         cout << "Czas wykonania operacji: " << duration.count() << " nanosekund" << endl;
         break;
     }
-
+        
     case 2: {
         auto start = high_resolution_clock::now();
         heap.extractMax();
@@ -120,7 +120,7 @@ void displayHeapMenu(Heap& heap, int& choice, int& number, int& element) {
         cout << "Element o max priorytecie po usunieciu: " << heap.extractMax();
         break;
     }
-
+        
     case 3: {
         auto start = high_resolution_clock::now();
         heap.findMax();
@@ -130,7 +130,7 @@ void displayHeapMenu(Heap& heap, int& choice, int& number, int& element) {
         cout << "Element o max priorytecie: " << heap.findMax();
         break;
     }
-
+        
     case 4: {
         auto start = high_resolution_clock::now();
         priorityRandom = rand() % 54353 + number;
@@ -140,7 +140,7 @@ void displayHeapMenu(Heap& heap, int& choice, int& number, int& element) {
         cout << "Czas wykonania operacji: " << duration.count() << " nanosekund" << endl;
         break;
     }
-
+        
     case 5: {
         auto start = high_resolution_clock::now();
         heap.returnSize();
@@ -150,7 +150,7 @@ void displayHeapMenu(Heap& heap, int& choice, int& number, int& element) {
         cout << "Rozmiar kopce: " << heap.returnSize();
         break;
     }
-
+        
     case 6:
 
         break;
